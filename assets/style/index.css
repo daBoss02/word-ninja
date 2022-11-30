@@ -1,38 +1,89 @@
 @import "./reset.css";
 
 :root {
-  --app-dark:          #030022                   ;
-  --app-footer-dark:   #08071b                   ;
-  --app-footer-border: #f0f2f444                 ;
-  --app-light:         #f0f2f4                   ;
-  --app-footer-light:  #dae2e5                   ;
-  --app-blue:          #95c2ff                   ;
-  --app-blue-hover:    #5aa0ff                   ;
-  --app-green:         #95ffd2                   ;
-  --app-green-hover:   #6effc1                   ;
-  --app-red:           #ff95c2                   ;
-  --app-red-hover:     #ff6eab                   ;
-  --app-purple:        #9d95ff                   ;
-  --app-purple-hover:  #796eff                   ;
-  --app-orange:        #ffd295                   ;
-  --app-orange-hover:  #ffc16e                   ;
-  --app-yellow:        #f7ff95                   ;
-
-  --app-header-height: 56px                        ;
-  --app-footer-height: 112px                       ;
-  --app-border-radius: 6px                         ;
+  --app-dark:          #030022;
+  --app-light:         #f0f2f4;
+  --app-blue:          #95c2ff;
+  --app-blue-hover:    #5aa0ff;
+  --app-green:         #95ffd2;
+  --app-green-hover:   #6effc1;
+  --app-red:           #ff95c2;
+  --app-red-hover:     #ff6eab;
+  --app-purple:        #9d95ff;
+  --app-purple-hover:  #796eff;
+  --app-orange:        #ffd295;
+  --app-orange-hover:  #ffc16e;
+  --app-yellow:        #f7ff95;
 }
 
 body {
-  background-color: var(--app-dark);
+  background: var(--app-red) url("../img/pastel-bg.jpg") center center / cover no-repeat fixed;
 }
 
-.container {
-  width: min(100% - 30px, 1280px);
-  margin-inline: auto;
+.center {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  place-items: center;
 }
 
 .flex {
   display: flex;
   flex-flow: row wrap;
+}
+
+.to-type {
+  color: var(--app-dark);
+  height: 40px;
+  font-size: 30px;
+  margin-bottom: 20px;
+  width: 400px;
+  text-align: center;
+}
+
+.word {
+  margin: 0 10px;
+}
+
+.user-input {
+  height: 80px;
+  background-color: #060231;
+  width: 400px;
+  border-radius: 60px;
+  text-align: center;
+  font-size: 30px;
+  color: var(--app-light);
+  padding: 0 40px;
+}
+
+.time {
+  margin: 20px 0 10px;
+  width: 400px;
+  text-align: center;
+}
+
+.btn {
+  width: 400px;
+  text-align: center;
+}
+
+.play {
+  width: 160px;
+  height: 60px;
+  background-color: var(--app-purple);
+  border-radius: 70px;
+  color: var(--app-light);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.play:hover {
+  background-color: var(--app-purple-hover);
+}
+
+.instructions {
+  width: 400px;
+  text-align: center;
+  margin-top: 10px;
 }

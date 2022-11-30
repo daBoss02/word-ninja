@@ -1,3 +1,3 @@
 ## Word Ninja
 
-🖱️ Click (here)[] to play
+🖱️ Click [here]() to play
