@@ -1,3 +1,3 @@
 ## Word Ninja
 
-🖱️ Click [here]() to play
+🖱️ Click [here](https://daboss02.github.io/word-ninja/) to play
