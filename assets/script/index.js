@@ -110,7 +110,7 @@ onEvent('click', play, function() {
 })
 
 input.onkeyup = function() {
-  if (input.value.toLowerCase() === word.innerText) {
+  if (input.value.toLowerCase().trim() === word.innerText) {
     ++hits;
     hitCount.innerText = `${hits.toString().padStart(2, '0')}`;
     word.innerText = randomWord();
