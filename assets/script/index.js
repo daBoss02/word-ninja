@@ -118,10 +118,16 @@ input.onkeyup = function() {
     correct.play();
   } else if (input.value.length === word.innerText.length) {
     incorrect.play()
+    input.style.backgroundColor = 'var(--app-red)';
     setTimeout(() => {
       incorrect.pause();
       incorrect.currentTime = 0;
+      input.style.backgroundColor = '#060231';
     }, 300)
+  }
+  if (hits === words.length || seconds < 0) {
+    seconds = 0;
+    endGame()
   }
 }
 
