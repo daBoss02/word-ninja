@@ -56,7 +56,7 @@ body {
   padding: 0 40px;
 }
 
-.time {
+.time-hit {
   margin: 20px 0 10px;
   width: 400px;
   text-align: center;
@@ -84,6 +84,86 @@ body {
 
 .instructions {
   width: 400px;
+  height: 25px;
   text-align: center;
   margin-top: 10px;
+}
+
+/* Stats */
+
+.stats-grid {
+  visibility: hidden;
+  opacity: 0;
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  place-items: center;
+  transition: 0.5s opacity;
+}
+.stats {
+  width: 400px;
+  height: 400px;
+  background-image: url('../img/stats-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 3px 3px 7px -2px #03002299;
+  position: relative;
+  background: var(--app-red) url("../img/pastel-bg.jpg") center center / cover no-repeat fixed;
+}
+.darken {
+  border-radius: 12px;
+  padding: 20px 30px;
+  width: 100%;
+  height: 100%;
+  background-color: #f0f2f45a;
+}
+
+span {
+  color: var(--app-dark);
+}
+
+h3, h2 {
+  font-weight: 400;
+}
+
+h2 {
+  letter-spacing: 2px;
+  text-decoration: 2px overline var(--app-light);
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  letter-spacing: 0.3px;
+}
+
+h3, p {
+  width: 100%;
+  text-align: center;
+}
+
+h3 + p {
+  margin-bottom: 20px;
+}
+
+.exit {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: grid;
+  place-items: center;
+  color: var(--app-light);
+  background-color: var(--app-red-hover);
+  width: 20px;
+  height: 20px;
+  line-height: 0px;
+}
+
+.exit p {
+  position: relative;
+  bottom: 0.5px;
 }

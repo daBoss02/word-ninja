@@ -16,26 +16,47 @@
     <script src="./assets/script/index.js" type="module"></script>
     
   </head>
-  <body>
+  <body class="cursor">
     <div class="center">
       <div class="game-body">
         
         <p class="to-type">
           <i class="fa-solid fa-right-long"></i>
-          <span class="word">Earthquake</span>
+          <span class="word"></span>
           <i class="fa-solid fa-left-long"></i>
         </p>
         
-        <input type="text" class="user-input">
+        <input type="text" class="user-input cursor">
 
-        <p class="time">100s</p>
+        <p class="time-hit"><span class="time">00s</span> | <span class="hit-count">00</span></p>
 
         <div class="btn">
-          <button class="play">Play</button>
+          <button class="play cursor">Play</button>
         </div>
 
         <p class="instructions">Type the word that appears between the arrows</p>
       </div>
     </div>
+
+    <div class="stats-grid">
+      <div class="stats">
+        <div class="darken">
+
+          <h2 class="stats-title">Stats &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+          <h3>Date</h3>
+          <p><span class="date">Nov 30 2022</span></p>
+  
+          <h3>Correct</h3>
+          <p><span class="hits-display">45</span>/90</p>
+  
+          <h3>Percentage</h3>
+          <p><span class="percent">50%</span></p>
+          <button class="exit">
+            <p>x</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
