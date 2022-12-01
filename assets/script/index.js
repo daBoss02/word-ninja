@@ -92,7 +92,7 @@ function start() {
 function endGame() {
   createScore();
   input.disabled = true;
-  seconds = 10;
+  seconds = 99;
   backgroundMusic.pause()
   backgroundMusic.currentTime = 0;
   gameOver.play();
