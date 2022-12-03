@@ -19,31 +19,38 @@ const percent = select('.percent');
 const stats = select('.stats-grid');
 const exit = select('.exit');
 const instructions = select('.instructions');
+const arrows = selectAll('.arrow');
 const scores = [];
 const backgroundMusic = new Audio('./assets/audio/background-music.mp3');
+backgroundMusic.volume = 0.5;
 const correct = new Audio('./assets/audio/correct.wav');
+correct.volume = 0.5;
 const countdown = new Audio('./assets/audio/countdown.wav');
+countdown.volume = 0.5;
 const gameOver = new Audio('./assets/audio/game-over.wav');
 const incorrect = new Audio('./assets/audio/incorrect.wav');
-const words = ['dinosaur', 'love', 'pineapple', 'calendar', 'robot', 'building',
-'population', 'weather', 'bottle', 'history', 'dream', 'character', 'money',
-'absolute', 'discipline', 'machine', 'accurate', 'connection', 'rainbow',
-'bicycle','eclipse', 'calculator', 'trouble', 'watermelon', 'developer',
-'philosophy', 'database', 'periodic', 'capitalism', 'abominable', 'component',
-'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee', 'beauty',
-'agency','chocolate', 'eleven', 'technology', 'alphabet', 'knowledge', 'magician',
-'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
-'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
-'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
-'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework',
-'fantastic', 'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery',
-'famous', 'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
-'keyboard', 'window'];
+gameOver.volume = 0.5;
+incorrect.volume = 0.5;
+const words = ['love', 'dinosaur', 'pineapple', 'calendar', 'robot', 'building',
+  'keyboard', 'window', 'population', 'weather', 'bottle', 'history', 'dream',
+  'character', 'money', 'absolute', 'discipline', 'machine', 'accurate',
+  'connection', 'rainbow', 'bicycle','eclipse', 'calculator', 'trouble', 'watermelon',
+  'developer', 'philosophy', 'database', 'periodic', 'capitalism', 'abominable',
+  'component', 'future', 'pasta', 'microwave', 'jungle', 'wallet', 'canada', 'coffee',
+  'beauty', 'agency','chocolate', 'eleven', 'technology', 'alphabet', 'knowledge',
+  'magician', 'professor', 'triangle', 'earthquake', 'baseball', 'beyond', 'evolution',
+  'banana', 'perfumer', 'computer', 'management', 'discovery', 'ambition', 'music',
+  'eagle', 'crown', 'chess', 'laptop', 'bedroom', 'delivery', 'enemy', 'button',
+  'superman', 'library', 'unboxing', 'bookstore', 'language', 'homework','fantastic',
+  'economy', 'interview', 'awesome', 'challenge', 'science', 'mystery', 'famous',
+  'league', 'memory', 'leather', 'planet', 'software', 'update', 'yellow',
+];
+
 
 let index = 0;
 let hits = 0;
 let seconds = 99;
-words.sort(() => (Math.random() > .5) ? 1 : -1);
+let bug = false;
 
 input.value = '';
 input.disabled = true;
@@ -62,7 +69,7 @@ function displayTime() {
       displayTime()
     }, 1_000);
   }
-  if(seconds < 0) {
+  if(seconds < 0 && bug === false) {
     endGame();
   }
 }
@@ -78,21 +85,32 @@ function createScore() {
 }
 
 function start() {
-  play.innerText = 'Try Again'
-  countdown.play()
   play.disabled = true;
-  setTimeout(() => {
-    input.disabled = false;
-    input.focus()
-    displayTime();
-    backgroundMusic.play()
-  }, 2_500);
+  if (play.innerText === 'Play' || play.innerText === 'Play Again') {
+    words.sort(() => (Math.random() > .5) ? 1 : -1);
+    countdown.play()
+    setTimeout(() => {
+      seconds = 99;
+      play.disabled = false;
+      word.innerText = randomWord();
+      input.disabled = false;
+      input.focus()
+      displayTime();
+      backgroundMusic.play()
+      play.innerText = 'End Game';
+    }, 2_500);
+  } else {
+    endGame()
+    bug = true;
+  }
 }
 
 function endGame() {
+  play.innerText = 'Play Again';
+  seconds = 0;
+  index = 0;
   createScore();
   input.disabled = true;
-  seconds = 99;
   backgroundMusic.pause()
   backgroundMusic.currentTime = 0;
   gameOver.play();
@@ -106,28 +124,31 @@ function endGame() {
 
 onEvent('click', play, function() {
   start();
-  word.innerText = randomWord();
 })
 
 input.onkeyup = function() {
   if (input.value.toLowerCase().trim() === word.innerText) {
+    input.style.backgroundColor = '#060231';
     ++hits;
+    arrows.forEach(arrow => arrow.classList.add('spin'));
+    setTimeout(() => {
+      arrows.forEach(arrow => arrow.classList.remove('spin'));
+    }, 200)
     hitCount.innerText = `${hits.toString().padStart(2, '0')}`;
     word.innerText = randomWord();
     input.value = '';
     correct.play();
-  } else if (input.value.length === word.innerText.length) {
+  } else if (input.value.trim().length >= word.innerText.length) {
     incorrect.play()
     input.style.backgroundColor = 'var(--app-red)';
     setTimeout(() => {
       incorrect.pause();
       incorrect.currentTime = 0;
-      input.style.backgroundColor = '#060231';
     }, 300)
   }
   if (hits === words.length || seconds < 0) {
-    seconds = 0;
-    endGame()
+    bug = true;
+    start()
   }
 }
 

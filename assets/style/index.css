@@ -1,19 +1,25 @@
 @import "./reset.css";
 
 :root {
-  --app-dark:          #030022;
-  --app-light:         #f0f2f4;
-  --app-blue:          #95c2ff;
-  --app-blue-hover:    #5aa0ff;
-  --app-green:         #95ffd2;
-  --app-green-hover:   #6effc1;
-  --app-red:           #ff95c2;
-  --app-red-hover:     #ff6eab;
-  --app-purple:        #9d95ff;
-  --app-purple-hover:  #796eff;
-  --app-orange:        #ffd295;
-  --app-orange-hover:  #ffc16e;
-  --app-yellow:        #f7ff95;
+  --app-dark: #030022;
+  --app-light: #f0f2f4;
+  --app-blue: #95c2ff;
+  --app-blue-hover: #5aa0ff;
+  --app-green: #95ffd2;
+  --app-green-hover: #6effc1;
+  --app-red: #ff95c2;
+  --app-red-hover: #ff6eab;
+  --app-purple: #9d95ff;
+  --app-purple-hover: #796eff;
+  --app-orange: #ffd295;
+  --app-orange-hover: #ffc16e;
+  --app-yellow: #f7ff95;
+
+  --app-width: 400px;
+}
+
+*, input {
+  transition: width 0.25s;
 }
 
 body {
@@ -23,7 +29,7 @@ body {
 .center {
   display: grid;
   width: 100%;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);;
   place-items: center;
 }
 
@@ -32,13 +38,41 @@ body {
   flex-flow: row wrap;
 }
 
+.word-display {
+  justify-content: center;
+  align-items: center;
+  width: var(--app-width);
+}
+
 .to-type {
   color: var(--app-dark);
-  height: 40px;
-  font-size: 30px;
+  height: 50px;
   margin-bottom: 20px;
-  width: 400px;
+  width: calc(100% - 85px);
   text-align: center;
+  font-size: 38px;
+}
+
+.arrow {
+  font-size: 34px;
+  position: relative;
+  bottom: 5px;
+}
+
+.spin {
+  animation: spin 200ms linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
 }
 
 .word {
@@ -48,24 +82,24 @@ body {
 .user-input {
   height: 80px;
   background-color: #060231;
-  width: 400px;
+  width: var(--app-width);
   border-radius: 60px;
   text-align: center;
   font-size: 30px;
   color: var(--app-light);
   padding: 0 40px;
   border: 2px solid transparent;
-  transition: border 0.1s ease-in-out;
+  transition: border 0.1s ease-in-out, width 0.25s;
 }
 
 .time-hit {
   margin: 20px 0 10px;
-  width: 400px;
+  width: var(--app-width);
   text-align: center;
 }
 
 .btn {
-  width: 400px;
+  width: var(--app-width);
   text-align: center;
 }
 
@@ -85,7 +119,7 @@ body {
 }
 
 .instructions {
-  width: 400px;
+  width: var(--app-width);
   height: 25px;
   text-align: center;
   margin-top: 10px;
@@ -105,7 +139,7 @@ body {
   transition: 0.5s opacity;
 }
 .stats {
-  width: 400px;
+  width: var(--app-width);
   height: 400px;
   background-image: url('../img/stats-bg.jpg');
   background-size: cover;
@@ -168,4 +202,24 @@ h3 + p {
 .exit p {
   position: relative;
   bottom: 0.5px;
+}
+
+@media (max-width: 440px) {
+  :root {
+    --app-width: 300px;
+  }
+}
+
+@media (max-width: 350px) {
+  :root {
+    --app-width: 275px;
+  }
+  .to-type {
+    font-size: 32px;
+    height: 40px;
+    width: calc(100% - 68px);
+  }
+  .arrow {
+    font-size: 26px;
+  }
 }
