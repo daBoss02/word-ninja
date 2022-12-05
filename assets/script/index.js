@@ -22,15 +22,15 @@ const instructions = select('.instructions');
 const arrows = selectAll('.arrow');
 const scores = [];
 const backgroundMusic = new Audio('./assets/audio/background-music.mp3');
-backgroundMusic.volume = 0.5;
+backgroundMusic.volume = 0.2;
 const correct = new Audio('./assets/audio/correct.wav');
-correct.volume = 0.5;
+correct.volume = 0.2;
 const countdown = new Audio('./assets/audio/countdown.wav');
-countdown.volume = 0.5;
+countdown.volume = 0.2;
 const gameOver = new Audio('./assets/audio/game-over.wav');
+gameOver.volume = 0.2;
 const incorrect = new Audio('./assets/audio/incorrect.wav');
-gameOver.volume = 0.5;
-incorrect.volume = 0.5;
+incorrect.volume = 0.2;
 const words = ['love', 'dinosaur', 'pineapple', 'calendar', 'robot', 'building',
   'keyboard', 'window', 'population', 'weather', 'bottle', 'history', 'dream',
   'character', 'money', 'absolute', 'discipline', 'machine', 'accurate',
