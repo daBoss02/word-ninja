@@ -50,7 +50,7 @@ body {
   margin-bottom: 20px;
   width: calc(100% - 85px);
   text-align: center;
-  font-size: 38px;
+  font-size: 44px;
 }
 
 .arrow {
@@ -80,6 +80,7 @@ body {
 }
 
 .user-input {
+  margin-top: 20px;
   height: 80px;
   background-color: #060231;
   width: var(--app-width);
@@ -136,7 +137,7 @@ body {
   position: fixed;
   top: 0;
   place-items: center;
-  transition: 0.5s opacity;
+  transition: 0.25s opacity;
 }
 .stats {
   width: var(--app-width);

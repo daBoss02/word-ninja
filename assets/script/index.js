@@ -153,8 +153,10 @@ input.onkeyup = function() {
 }
 
 onEvent('click', exit, () => {
-  stats.style.visibility = 'hidden';
   stats.style.opacity = '0';
+  setTimeout(() => {
+    stats.style.visibility = 'hidden';
+  }, 250)
   
 
 })
