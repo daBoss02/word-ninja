@@ -90,7 +90,9 @@ function createScore() {
   uScore.innerHTML = `
     <p>You Typed</p>
     <h3>${score.hits}</h3>
-    <p>Words!!</p>`
+    <p>Words</p>`
+  uScore.style.visibility = 'visible';
+  uScore.style.opacity = '1';
   score.percentage = `${(Math.round(hits / 90 * 10_000) / 100).toFixed(2).toString().padStart(5, '0')}%`;
   stats.style.visibility = 'visible';
   stats.style.opacity = '1';
@@ -188,7 +190,9 @@ input.onkeyup = function() {
 
 onEvent('click', exit, () => {
   stats.style.opacity = '0';
+  lead.style.opacity = '0';
   setTimeout(() => {
     stats.style.visibility = 'hidden';
+    lead.style.display = 'none'
   }, 250)
 })

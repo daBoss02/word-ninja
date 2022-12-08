@@ -240,8 +240,8 @@ h3 + p {
 }
 
 .your-score {
-  visibility: visible;
-  opacity: 1;
+  visibility: hidden;
+  opacity: 0;
   transition: opacity 0.25s;
 }
 
