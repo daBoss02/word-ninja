@@ -224,3 +224,11 @@ h3 + p {
     font-size: 26px;
   }
 }
+
+.date {
+  letter-spacing: 1px;
+}
+
+.leaderboard span + span {
+  margin-left: 20px;
+}

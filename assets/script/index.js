@@ -13,14 +13,16 @@ const hitCount = select('.hit-count')
 const play = select('.play');
 const input = select('.user-input');
 const word = select('.word');
+const placement = select('.place')
 const dateOutput = select('.date');
 const hitsDisplay = select('.hits-display');
 const percent = select('.percent');
+const lead = select('.leaderboard');
 const stats = select('.stats-grid');
 const exit = select('.exit');
 const instructions = select('.instructions');
 const arrows = selectAll('.arrow');
-const scores = [];
+const scores = localStorage.getItem("scores") ? JSON.parse(localStorage.getItem("scores")) : [];
 const backgroundMusic = new Audio('./assets/audio/background-music.mp3');
 backgroundMusic.volume = 0.2;
 const correct = new Audio('./assets/audio/correct.wav');
@@ -74,14 +76,38 @@ function displayTime() {
   }
 }
 
+function leaderBoard(n, h, d, p) {
+  lead.innerHTML += `<p>
+      <span class="place">#${n}</span>
+      <span class="hits-display">${h.toString().padStart(2, '0')}</span>/90
+      <span class="date">${d}</span>
+      <span class="percent">${p}</span>
+    </p>`
+}
+
 function createScore() {
-  let score = new Score(hits);
-  dateOutput.innerText = score.date;
-  hitsDisplay.innerText = score.hits;
-  percent.innerText = score.percentage;
+  let score = {};
+  lead.innerHTML = '';
+  score.date = new Date().toDateString().slice(3).trim(' ')
+  score.hits = hits;
+  score.percentage = `${(Math.round(hits / 90 * 10_000) / 100).toFixed(2).toString().padStart(5, '0')}%`;
+  // dateOutput.innerText = score.date;
+  // hitsDisplay.innerText = score.hits;
+  // percent.innerText = score.percentage;
   stats.style.visibility = 'visible';
   stats.style.opacity = '1';
   scores.push(score);
+  scores.sort((a, b) => (a.hits > b.hits) ? -1 : 1);
+  if (scores.length < 10) {
+    for (let i = 0; i < scores.length; i++) {
+      leaderBoard(i + 1, scores[i].hits, scores[i].date, scores[i].percentage);
+    }
+  } else {
+    for (let i = 0; i < 10; i++) {
+      leaderBoard(i + 1, scores[i].hits, scores[i].date, scores[i].percent);
+    }
+  }
+  localStorage.setItem('scores', JSON.stringify(scores));
 }
 
 function start() {
