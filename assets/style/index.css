@@ -229,6 +229,28 @@ h3 + p {
   letter-spacing: 0.5px;
 }
 
+.leaderboard {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
 .leaderboard span + span {
   margin-left: 20px;
+}
+
+.your-score {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.your-score p {
+  font-size: 20px;
+}
+
+.your-score h3 {
+  font-size: 28px;
+  margin-top: 20px;
+  margin-bottom: 16px;
 }

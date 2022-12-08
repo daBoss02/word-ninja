@@ -13,10 +13,7 @@ const hitCount = select('.hit-count')
 const play = select('.play');
 const input = select('.user-input');
 const word = select('.word');
-const placement = select('.place')
-const dateOutput = select('.date');
-const hitsDisplay = select('.hits-display');
-const percent = select('.percent');
+const uScore = select('.your-score')
 const lead = select('.leaderboard');
 const stats = select('.stats-grid');
 const exit = select('.exit');
@@ -90,10 +87,11 @@ function createScore() {
   lead.innerHTML = '';
   score.date = new Date().toDateString().slice(3).trim(' ')
   score.hits = hits;
+  uScore.innerHTML = `
+    <p>You Typed</p>
+    <h3>${score.hits}</h3>
+    <p>Words!!</p>`
   score.percentage = `${(Math.round(hits / 90 * 10_000) / 100).toFixed(2).toString().padStart(5, '0')}%`;
-  // dateOutput.innerText = score.date;
-  // hitsDisplay.innerText = score.hits;
-  // percent.innerText = score.percentage;
   stats.style.visibility = 'visible';
   stats.style.opacity = '1';
   scores.push(score);
@@ -104,9 +102,19 @@ function createScore() {
     }
   } else {
     for (let i = 0; i < 9; i++) {
-      leaderBoard(i + 1, scores[i].hits, scores[i].date, scores[i].percent);
+      leaderBoard(i + 1, scores[i].hits, scores[i].date, scores[i].percentage);
     }
   }
+  setTimeout(() => {
+    uScore.style.opacity = '0';
+    setTimeout(() => {
+      uScore.style.visibility = 'hidden';
+      uScore.style.display = 'none';
+      lead.style.visibility = 'visible';
+      lead.style.opacity = '1';
+    }, 250);
+  }, 1_000);
+
   localStorage.setItem('scores', JSON.stringify(scores));
 }
 
