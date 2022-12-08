@@ -103,7 +103,7 @@ function createScore() {
       leaderBoard(i + 1, scores[i].hits, scores[i].date, scores[i].percentage);
     }
   } else {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
       leaderBoard(i + 1, scores[i].hits, scores[i].date, scores[i].percent);
     }
   }
@@ -183,6 +183,4 @@ onEvent('click', exit, () => {
   setTimeout(() => {
     stats.style.visibility = 'hidden';
   }, 250)
-  
-
 })
